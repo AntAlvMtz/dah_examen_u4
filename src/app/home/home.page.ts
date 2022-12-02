@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Client } from '../models/client';
+import { ClientService } from '../services/client.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+
+  //public client: Client[];
+
+  constructor(private clientService:ClientService) {
+
+    this.clientService.getReservations().subscribe(res =>{
+     // this.client = res;
+      //console.log(this.client);
+    })
+
+  }
+
+
 
 }
