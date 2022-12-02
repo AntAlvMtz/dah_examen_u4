@@ -25,11 +25,11 @@ export class ClientService {
     this.firestore.collection('Client').add(client);
   }
 
-  public getReservations(): Observable<Client []>{
+  public getReservations(): Observable<Reservation []>{
     return this.firestore.collection('Reservation').snapshotChanges().pipe(
       map(actions => {
         return actions.map(a =>{
-          const data = a.payload.doc.data() as Client;
+          const data = a.payload.doc.data() as Reservation;
           const id = a.payload.doc.id;
           return { id, ...data };
         })
@@ -37,4 +37,13 @@ export class ClientService {
     )
   }
 
+  public clientLogin(tel:string): any{
+    let result = this.firestore.collection('Client').doc(tel).valueChanges();
+    return result;
+  }
+
+  public getClientByTel(tel:string){
+    let result = this.firestore.collection('Client').doc(tel).valueChanges();
+    return result;
+  }
 }

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reservación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <form [formGroup]="myForm">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-datetime class="calendar" formControlName="dateReservation" [min]="today" presentation="date">
+              <span slot="title">Selecciona la fecha a reservar</span>
+            </ion-datetime>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let item of validatorMessages['dateReservation']">
+              <div class="errormessages" *ngIf="(myForm.get('dateReservation').dirty || myForm.get('dateReservation').touched) && myForm.get('dateReservation').hasError(item.type)">
+                {{item.message}}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+          <ng-container *ngFor="let item of validatorMessages['dateReservation']">
+            <ng-container *ngIf="(myForm.get('dateReservation').dirty || myForm.get('dateReservation').touched) && !myForm.get('dateReservation').hasError(item.type)">
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Alberca y porcentaje de agua</ion-label>
+                    <ion-range [ticks]="true" [snaps]="true" [min]="0" [max]="6" [pin]="true" formControlName="pool"></ion-range>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Brincolín</ion-label>
+                    <ion-toggle slot="end" [checked]="false" formControlName="brincolin"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Mesa de postres</ion-label>
+                    <ion-toggle slot="end" [checked]="false" formControlName="mesaPostres"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Futbolito</ion-label>
+                    <ion-toggle slot="end" [checked]="false" formControlName="futbolito"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Total: {{ total }}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ng-container>
+          </ng-container>
+    </form>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="myForm.valid">
+    <ion-fab-button (click)="newReservation()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

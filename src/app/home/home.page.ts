@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Client } from '../models/client';
+import { Reservation } from '../models/reservation';
 import { ClientService } from '../services/client.service';
 
 
@@ -11,13 +12,13 @@ import { ClientService } from '../services/client.service';
 export class HomePage {
 
 
-  //public client: Client[];
+  public reservations: Reservation[];
 
   constructor(private clientService:ClientService) {
 
     this.clientService.getReservations().subscribe(res =>{
-     // this.client = res;
-      //console.log(this.client);
+      this.reservations = res;
+      console.log(this.reservations);
     })
 
   }
