@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
+  firebaseConfig: {
     apiKey: "AIzaSyDNlHn7MeEteecUpFKhor68WU9swubGkWg",
     authDomain: "dah2022-adjam-aarl.firebaseapp.com",
     projectId: "dah2022-adjam-aarl",
